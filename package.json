@@ -1,0 +1,16 @@
+{
+  "name": "tfiTest",
+  "version": "0.0.1",
+  "description": "Test for TFI project",
+  "main": "index.js",
+  "dependencies": {
+    "phantom": "~0.7.2",
+    "selenium-webdriver": "~2.45.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lgargantini",
+  "license": "BSD-2-Clause"
+}
