@@ -6,7 +6,7 @@ var results = {};
 var webdriver = require('selenium-webdriver');
 var By = require('selenium-webdriver').By;
 var until = require('selenium-webdriver').until;
-
+var lat = [];
 //SHOW ALERTS 
 	function connectWs(driver, browser, i){
 		driver.get('http://localhost:8000');
@@ -26,6 +26,7 @@ var until = require('selenium-webdriver').until;
 		for(var i=0; i< number;i++){
 			if(tec == 'ws'){
 				connectWs(driver, browser, i);
+				var latencySpan = driver.findElement(By.id('latency'));
 				driver.findElement(By.id('msg')).sendKeys('test message ws'+i);
 				driver.findElement(By.id('sendMsgWs')).click();
 			}else{
@@ -35,7 +36,6 @@ var until = require('selenium-webdriver').until;
 				checkAlert(driver, browser, i);
 			}
 		}
-		//return results;
 	}
 
 
@@ -92,9 +92,11 @@ var until = require('selenium-webdriver').until;
 
 	function checkAlert(driver, browser, i) {
 	  if(browser == 'phantom'){
+	    
 	    driver.onPrompt = function  (msg, defaultVl) {
-	      return "test";
-	    }
+	      return 'test';
+	    };
+	  
 	  }else{
 	    var alert = driver.switchTo().alert();
 	    alert.sendKeys('testUser'+i);
@@ -133,7 +135,7 @@ var gen = {
 				break;
 		}
 		
-		res.end("Test ejecutado\n" + 
+		res.end('Test ejecutado\n' + 
 			'Tecnologia :'+tec+'->'+test+'\n'+
 			'Driver :'+browser+'->'+'Users :'+number);
 
